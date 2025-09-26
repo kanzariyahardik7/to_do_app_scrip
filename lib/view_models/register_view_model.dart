@@ -26,7 +26,7 @@ class RegisterViewModel extends ChangeNotifier {
       final response = await registerRepository.register(body);
 
       if (response?.token != null) {
-        // for the api success reponse
+        //  for the api success reponse
         _setRegisterApiResponse(ApiResponse.completed(response));
 
         //save token here

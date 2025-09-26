@@ -88,9 +88,7 @@ class _CreateTaskState extends State<CreateTask> {
                     lastDate: DateTime(2100),
                   );
                   if (picked != null) {
-                    setState(() {
-                      _dueDate = picked;
-                    });
+                    setState(() => _dueDate = picked);
                   }
                 },
               ),

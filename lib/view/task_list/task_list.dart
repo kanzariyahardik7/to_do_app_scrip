@@ -56,7 +56,7 @@ class _TaskListState extends State<TaskList> {
                       ); // Pass task for editing
                     },
                     onDelete: (t) {
-                      viewModel.deleteTask(t.id!);
+                      viewModel.deleteTask(t.id!, index);
                     },
                   );
                 },

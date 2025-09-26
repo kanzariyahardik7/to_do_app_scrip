@@ -11,19 +11,25 @@ class UserViewModel extends ChangeNotifier {
   UserViewModel({required this.userRepository});
 
   //-------------------------------------------------------------
-  ApiResponse<UserListModel> getUsersApiResponse = ApiResponse.init();
-  List<UserModel> userList = [];
+  ApiResponse<UserListModel> _getUsersApiResponse = ApiResponse.init();
+  List<UserModel> _userList = [];
 
-  int currentPage = 0;
-  int totalPages = 0;
-  int perPage = 4;
+  int _currentPage = 0;
+  int _totalPages = 0;
+  final int _perPage = 4;
+
+  ApiResponse<UserListModel> get getUsersApiResponse => _getUsersApiResponse;
+  List<UserModel> get userList => List.unmodifiable(_userList);
+  int get currentPage => _currentPage;
+  int get totalPages => _totalPages;
+  int get perPage => _perPage;
 
   void _setUsersApiResponse(ApiResponse<UserListModel> response) {
-    getUsersApiResponse = response;
+    _getUsersApiResponse = response;
     if (response.status == Status.completed) {
-      currentPage = response.data?.page ?? 0;
-      totalPages = response.data?.totalPages ?? 0;
-      userList.addAll(response.data?.data ?? []);
+      _currentPage = response.data?.page ?? 0;
+      _totalPages = response.data?.totalPages ?? 0;
+      _userList.addAll(response.data?.data ?? []);
     }
     notifyListeners();
   }
@@ -52,17 +58,20 @@ class UserViewModel extends ChangeNotifier {
   }
 
   resetUserData() {
-    getUsersApiResponse = ApiResponse.init();
-    userList = [];
-    currentPage = 0;
-    totalPages = 0;
+    _getUsersApiResponse = ApiResponse.init();
+    _userList = [];
+    _currentPage = 0;
+    _totalPages = 0;
   }
 
   //-------------------------------------------------------------
-  ApiResponse<SingleUserModel> getSingleUserApiResponse = ApiResponse.init();
+  ApiResponse<SingleUserModel> _getSingleUserApiResponse = ApiResponse.init();
+
+  ApiResponse<SingleUserModel> get getSingleUserApiResponse =>
+      _getSingleUserApiResponse;
 
   void _setSingleUserApiResponse(ApiResponse<SingleUserModel> response) {
-    getSingleUserApiResponse = response;
+    _getSingleUserApiResponse = response;
     notifyListeners();
   }
 

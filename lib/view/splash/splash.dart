@@ -57,7 +57,7 @@ class _SplashScreenState extends State<SplashScreen>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: deepPurple,
+      backgroundColor: white,
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -69,11 +69,7 @@ class _SplashScreenState extends State<SplashScreen>
                 scale: _iconScale,
                 duration: const Duration(seconds: 1),
                 curve: Curves.easeOutBack,
-                child: const Icon(
-                  Icons.check_circle,
-                  size: 100,
-                  color: Colors.white,
-                ),
+                child: const Icon(Icons.check_circle, size: 100, color: blue),
               ),
             ),
             const SizedBox(height: 20),
@@ -85,7 +81,7 @@ class _SplashScreenState extends State<SplashScreen>
                 style: TextStyle(
                   fontSize: 30,
                   fontWeight: FontWeight.bold,
-                  color: Colors.white,
+                  color: black,
                 ),
               ),
             ),
@@ -95,7 +91,7 @@ class _SplashScreenState extends State<SplashScreen>
               duration: const Duration(seconds: 1),
               child: const Text(
                 "Organize your tasks easily",
-                style: TextStyle(fontSize: 16, color: Colors.white70),
+                style: TextStyle(fontSize: 16, color: grey),
               ),
             ),
           ],

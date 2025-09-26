@@ -58,10 +58,10 @@ class TaskViewModel extends ChangeNotifier {
   }
 
   /// Delete a task
-  Future<void> deleteTask(int id) async {
+  Future<void> deleteTask(int id, int index) async {
     try {
       await taskRepository.deleteTask(id);
-      _tasks.removeWhere((task) => task.id == id);
+      _tasks.removeAt(index);
       Utils.toastMessage("Task updated successfully!", success);
       notifyListeners();
     } catch (e) {
