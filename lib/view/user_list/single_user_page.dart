@@ -1,3 +1,4 @@
+import 'package:app_scrip/utils/colors.dart';
 import 'package:app_scrip/view/user_list/widgets/single_user_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -29,8 +30,10 @@ class _SingleUserPageState extends State<SingleUserPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: white,
       appBar: AppBar(
         title: const Text("User Details"),
+        backgroundColor: white,
         scrolledUnderElevation: 0,
       ),
       body: Consumer<UserViewModel>(

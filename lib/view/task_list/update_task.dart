@@ -52,7 +52,7 @@ class _UpdateTaskState extends State<UpdateTask> {
 
     return Scaffold(
       backgroundColor: white,
-      appBar: AppBar(title: const Text("Edit Task"), backgroundColor: white),
+      appBar: AppBar(title: const Text("Update Task"), backgroundColor: white),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Form(

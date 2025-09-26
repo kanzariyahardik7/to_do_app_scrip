@@ -1,4 +1,5 @@
 import 'package:app_scrip/app_dependency/get_it_depencency.dart';
+import 'package:app_scrip/universal_widgets/custom_button.dart';
 import 'package:app_scrip/utils/colors.dart';
 import 'package:app_scrip/view/drawer/drawer.dart';
 import 'package:app_scrip/view/task_list/widget/task_item_widget.dart';
@@ -41,7 +42,21 @@ class _TaskListState extends State<TaskList> {
             return const Center(child: CircularProgressIndicator());
           } else {
             if (viewModel.tasks.isEmpty) {
-              return Center(child: Text("No Data"));
+              return Center(
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 24),
+                  child: CustomButton(
+                    text: "Create Task",
+                    onTap: () {
+                      context.push("/createtask");
+                    },
+                    width: 200,
+                    height: 50,
+                    backgroundColor: green,
+                    borderRadious: 16,
+                  ),
+                ),
+              );
             } else {
               return ListView.builder(
                 itemCount: viewModel.tasks.length,
@@ -64,14 +79,6 @@ class _TaskListState extends State<TaskList> {
             }
           }
         },
-      ),
-
-      floatingActionButton: FloatingActionButton(
-        backgroundColor: green,
-        onPressed: () async {
-          context.push("/createtask");
-        },
-        child: const Icon(Icons.add, color: white),
       ),
     );
   }
