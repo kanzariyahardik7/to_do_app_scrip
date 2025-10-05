@@ -48,16 +48,16 @@ void setupLocator() {
   );
 
   //-------------------------------- ViewModels --------------------------------
-  getIt.registerLazySingleton<LoginViewModel>(
+  getIt.registerFactory<LoginViewModel>(
     () => LoginViewModel(loginRepository: getIt<LoginRepository>()),
   );
-  getIt.registerLazySingleton<RegisterViewModel>(
+  getIt.registerFactory<RegisterViewModel>(
     () => RegisterViewModel(registerRepository: getIt<RegisterRepository>()),
   );
-  getIt.registerLazySingleton<UserViewModel>(
+  getIt.registerFactory<UserViewModel>(
     () => UserViewModel(userRepository: getIt<UserRepository>()),
   );
-  getIt.registerLazySingleton<TaskViewModel>(
+  getIt.registerFactory<TaskViewModel>(
     () => TaskViewModel(taskRepository: getIt<TaskRepository>()),
   );
 }

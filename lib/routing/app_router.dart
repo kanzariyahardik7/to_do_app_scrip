@@ -9,28 +9,45 @@ import 'package:app_scrip/view/user_list/single_user_page.dart';
 import 'package:app_scrip/view/user_list/user_list.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:flutter/widgets.dart';
 
 CustomTransitionPage<void> buildPage(Widget child, GoRouterState state) {
   return CustomTransitionPage<void>(
-    transitionDuration: const Duration(milliseconds: 300), // smoother
     key: state.pageKey,
+    transitionDuration: const Duration(milliseconds: 700),
     child: child,
-
-    // Smooth left-to-right slide (iOS style)
     transitionsBuilder: (context, animation, secondaryAnimation, child) {
-      const begin = Offset(-1.0, 0.0); // <- left off-screen
-      const end = Offset.zero;
-      const curve = Curves.easeInOut;
-      var tween = Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
-      var offsetAnimation = animation.drive(tween);
+      return AnimatedBuilder(
+        animation: animation,
+        builder: (context, _) {
+          // Radius grows from 0 to full screen diagonal
+          final size = MediaQuery.of(context).size;
+          final maxRadius =
+              (size.height * size.height + size.width * size.width);
+          final radius = animation.value * maxRadius;
 
-      // Optional: fade in along with slide
-      return SlideTransition(
-        position: offsetAnimation,
-        child: FadeTransition(opacity: animation, child: child),
+          return ClipPath(clipper: _CircleRevealClipper(radius), child: child);
+        },
       );
     },
   );
+}
+
+class _CircleRevealClipper extends CustomClipper<Path> {
+  final double radius;
+  _CircleRevealClipper(this.radius);
+
+  @override
+  Path getClip(Size size) {
+    final path = Path();
+    final center = Offset(size.width / 2, size.height / 2);
+    path.addOval(Rect.fromCircle(center: center, radius: radius));
+    return path;
+  }
+
+  @override
+  bool shouldReclip(_CircleRevealClipper oldClipper) =>
+      radius != oldClipper.radius;
 }
 
 class AppRouter {
